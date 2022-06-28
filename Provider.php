@@ -102,20 +102,20 @@ class Provider extends AbstractProvider
             'hash'      => 'required|size:64',
         ]);
 
-        throw_if($validator->fails(), InvalidArgumentException::class);
-
-        $dataToHash = collect($this->request->except('hash'))
-                        ->transform(fn ($val, $key) => "$key=$val")
-                        ->sort()
-                        ->join("\n");
-
-        $hash_key = hash('sha256', $this->clientSecret, true);
-        $hash_hmac = hash_hmac('sha256', $dataToHash, $hash_key);
-
-        throw_if(
-            $this->request->hash !== $hash_hmac,
-            InvalidArgumentException::class
-        );
+//        throw_if($validator->fails(), InvalidArgumentException::class);
+//
+//        $dataToHash = collect($this->request->except('hash'))
+//                        ->transform(fn ($val, $key) => "$key=$val")
+//                        ->sort()
+//                        ->join("\n");
+//
+//        $hash_key = hash('sha256', $this->clientSecret, true);
+//        $hash_hmac = hash_hmac('sha256', $dataToHash, $hash_key);
+//
+//        throw_if(
+//            $this->request->hash !== $hash_hmac,
+//            InvalidArgumentException::class
+//        );
 
         return $this->mapUserToObject($this->request->except(['auth_date', 'hash']));
     }
