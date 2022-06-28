@@ -102,7 +102,7 @@ class Provider extends AbstractProvider
             'hash'      => 'required|size:64',
         ]);
 
-//        throw_if($validator->fails(), InvalidArgumentException::class);
+        throw_if($validator->fails(), InvalidArgumentException::class);
 //
 //        $dataToHash = collect($this->request->except('hash'))
 //                        ->transform(fn ($val, $key) => "$key=$val")
